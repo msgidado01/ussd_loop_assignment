@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .atm-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bank-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bank-info img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .bank-info h1 {
+            font-size: 24px;
+        }
+
+        .bank-building img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+<script>
+
+    let balance = 2500; // Initial balance
+    
+    while (true) {
+        let fcmbCode = prompt("Enter FCMB Code (*329#):");
+        
+        if (fcmbCode !== "*329#") {
+            alert("Invalid FCMB Code. Please enter the correct code (*329#).");
+            continue;
+        }
+    
+        let choice = Number(prompt(`Welcome to FCMB Magic Banking
+    What do you want to perform:
+    1. Buy Airtime
+    2. Buy Data
+    3. Transfer
+    4. Exit
+        `));
+    
+        if (choice === 1) {
+            let airtimeAmount = parseFloat(prompt("Enter airtime amount:"));
+            let recipientPhoneNumber = prompt("Enter recipient's phone number:");
+            if (airtimeAmount <= balance) {
+                balance -= airtimeAmount;
+                confirm(`Are sure you want recharge ${airtimeAmount}`);
+                alert(`Airtime purchase for ${recipientPhoneNumber} successful.`);
+            } else {
+                alert(`Insufficient balance.`);
+            }
+        } else if (choice === 2) {
+            let dataAmount = parseFloat(prompt("Enter data amount:"));
+            let recipientPhoneNumber = prompt("Enter recipient's phone number:");
+            if (dataAmount <= balance) {
+                balance -= dataAmount;
+                confirm(`Are you sure you want purchase ${dataAmount}`);
+                alert(`Data purchase for ${recipientPhoneNumber} successful.`);
+            } else {
+                alert(`Insufficient balance.`);
+            }
+        } else if (choice === 3) {
+            let transferAmount = parseFloat(prompt("Enter transfer amount:"));
+            let recipientAccount = prompt("Enter recipient account:");
+            if (transferAmount <= balance) {
+                balance -= transferAmount;
+                confirm(`Are you sure you want to transfer ${transferAmount}`)
+                alert(`Transfer to ${recipientAccount} successful.`);
+            } else {
+                alert(`Insufficient balance.`);
+            }
+        } else if (choice === 4) {
+            alert("Thanks for using our USSD!");
+            exit();
+        } else {
+            alert("Invalid Choice. Please select a valid option.");
+        }
+    }
+    
+    </script>
+    
+    <title>FCMB Bank ATM</title>
+</head>
+<body>
+    <div class="atm-container">
+        <div class="bank-info">
+            <img src="fcmblogo.png" alt="FCMB Logo">
+            <h1>Welcome to FCMB Bank</h1>
+        </div>
+        <div class="bank-building">
+            <img src="fcmb2.jpg" alt="FCMB Building">
+        </div>
+    </div>
+</body>
+</html>
